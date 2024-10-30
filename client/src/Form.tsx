@@ -1,8 +1,16 @@
 import Pallete from "./Pallete";
 
 export default function Form() {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const prueba = Object.fromEntries(new FormData(event.currentTarget));
+    console.log(prueba);
+  }
   return (
-    <form className="relative m-4 p-4 rounded-xl grid grid-cols-[auto_1fr_auto] grid-[auto_1fr_auto] min-w-44 max-w-lg mx-auto bg-white">
+    <form
+      onSubmit={handleSubmit}
+      className="relative m-4 p-4 rounded-xl grid grid-cols-[auto_1fr_auto] grid-[auto_1fr_auto] min-w-44 max-w-lg mx-auto bg-white"
+    >
       <input
         name="title"
         type="text"
