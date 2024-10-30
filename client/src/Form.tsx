@@ -9,7 +9,7 @@ export default function Form() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative m-4 p-4 rounded-xl grid grid-cols-[auto_1fr_auto] grid-[auto_1fr_auto] min-w-44 max-w-lg mx-auto bg-white"
+      className="relative m-4 p-4 rounded-xl grid grid-cols-[auto_1fr_auto] grid-[auto_1fr_auto] min-w-72 w-full max-w-lg mx-auto bg-white"
     >
       <input
         name="title"
