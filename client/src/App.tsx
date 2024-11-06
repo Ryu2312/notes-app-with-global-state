@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Form from "./components/Form";
+import Header from "./components/Header";
+import NoteList from "./components/NoteList";
+import Sidebar from "./components/Sidebar";
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [page, setPage] = useState("Notes");
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="relative top-0 max-w-7xl grid grid-rows-[auto_1fr] grid-cols-[auto_1fr] h-screen mx-auto">
+      <Header />
+      <Sidebar setPage={setPage} page={page} />
+      <main className="flex flex-col gap-6 items-center py-6 px-8 col-span-2 lg:col-span-1 ">
+        {page === "Notes" && (
+          <>
+            <Form />
+            <NoteList title={"PINNED"} criteria={"importnt"} value={true} />
+            <NoteList title={"OTHERS"} criteria={"importnt"} value={false} />
+          </>
+        )}
+        {page === "Trash" && (
+          <NoteList title={"Trash"} criteria={"deleted"} value={true} />
+        )}
+      </main>
+    </div>
+  );
 }
-
-export default App
